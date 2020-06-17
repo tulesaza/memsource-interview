@@ -1,0 +1,10 @@
+#!/bin/bash
+
+SERVICE_NAME=skeleton
+SERVICE_DIR=$HOME/env/services/$SERVICE_NAME
+HEAPDUMP_DIR=$HOME/env/tmp
+SERVICE_MAX_MEMORY=$(grep SERVICE_MAX_MEMORY $SERVICE_DIR/application.properties | grep -v "^[ ]*#" | sed 's/.*=//g')
+
+if [ -n "$SERVICE_MAX_MEMORY" ]; then SERVICE_MAX_MEMORY=-Xmx$SERVICE_MAX_MEMORY; fi
+
+java -Djna.nosys=true -Dservice.name=$SERVICE_NAME -Dfile.encoding=UTF-8 -Dslf4j.trace=com.memsource $SERVICE_MAX_MEMORY -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=$HEAPDUMP_DIR -jar $SERVICE_DIR/$SERVICE_NAME.jar --spring.config.location=$SERVICE_DIR/application.properties --logging.config=$SERVICE_DIR/logback-config.xml &

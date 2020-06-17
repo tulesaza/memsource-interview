@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+    <if condition='isNull("service.name")'>
+        <then>
+            <property scope="context" name="service.name" value="skeleton"/>
+        </then>
+    </if>
+    <springProfile name="production">
+        <define scope="context" name="APP_VERSION" class="com.memsource.skeleton.logging.AppVersionPropertyDefiner"/>
+    </springProfile>
+    <springProfile name="dev">
+        <property scope="context" name="APP_VERSION" value="dev"/>
+    </springProfile>
+    <springProfile name="test">
+        <property scope="context" name="APP_VERSION" value="test"/>
+    </springProfile>
+    <property name="SERVICE_NAME" value="${service.name}"/>
+    <property name="LOG_FILE" value="${user.home}/env/log/${SERVICE_NAME}.log"/>
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder>
+            <pattern>%d [%15.15t] [${HOSTNAME}] [${SERVICE_NAME}] [${APP_VERSION}] [%-16X{actionId}] %-5p %-40c{40} -
+                %m%n
+            </pattern>
+        </encoder>
+        <file>${LOG_FILE}</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <param name="FileNamePattern" value="${user.home}/env/log/${SERVICE_NAME}.log.%i.gz"/>
+            <param name="MinIndex" value="1"/>
+            <param name="MaxIndex" value="13"/>
+        </rollingPolicy>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <MaxFileSize>800000000</MaxFileSize>
+        </triggeringPolicy>
+    </appender>
+    <root level="INFO">
+        <appender-ref ref="FILE"/>
+    </root>
+    <if condition='isDefined("slf4j.trace")'>
+        <then>
+            <logger name="${slf4j.trace}" level="TRACE"/>
+        </then>
+    </if>
+</configuration>

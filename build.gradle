@@ -35,9 +35,12 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 ext['spock.version'] = 1.3
 
+
+
 compileJava {
     // no annotation processors on the compile classpath needed
     options.compilerArgs = ['-proc:none']
+    options.encoding = 'UTF-8'
 }
 
 compileTestGroovy {
@@ -46,7 +49,7 @@ compileTestGroovy {
 }
 
 bootJar {
-    baseName = 'TODO'
+    baseName = 'backend-interview'
     version = "${project.version}"
     manifest {
         attributes(
@@ -86,10 +89,12 @@ test {
 
 spotbugs {
     toolVersion = '3.1.12'
-    effort = 'max'
+    effort = 'min'
     reportLevel = 'low'
 }
 spotbugsTest.enabled = false
+
+
 
 tasks.withType(com.github.spotbugs.SpotBugsTask) {
     excludeFilter = file("$projectDir/config/spotbugs/excludeFilter.xml")

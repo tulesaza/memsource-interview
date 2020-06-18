@@ -40,7 +40,8 @@ class JsonFileBuilderTest {
         input.add(data);
 
         ClassPathResource source = new ClassPathResource("another-sample.json");
-        MultipartFile multipartFile = new MockMultipartFile(Objects.requireNonNull(source.getFilename()), source.getInputStream());
+        MultipartFile multipartFile = new MockMultipartFile(Objects.requireNonNull(source.getFilename()),
+                source.getInputStream());
         byte[] result = fileBuilder.buildTranslated(options, multipartFile, input);
         DocumentContext context = JsonPath.parse(new String(result));
         assertEquals("Mark TwainCZ", context.read("$['book']['chapters'][0]['segments'][0]['cs']"));

@@ -22,7 +22,8 @@ class JsonFileDataExtractorTest {
     @Test
     void extract_from_sample_file() throws IOException {
         ClassPathResource source = new ClassPathResource("sample.json");
-        MultipartFile multipartFile = new MockMultipartFile(Objects.requireNonNull(source.getFilename()), source.getInputStream());
+        MultipartFile multipartFile = new MockMultipartFile(Objects.requireNonNull(source.getFilename()),
+                source.getInputStream());
 
         List<Data> result = extractor.extract(multipartFile, options);
         assertEquals(6, result.size());
@@ -33,7 +34,8 @@ class JsonFileDataExtractorTest {
     void exctract_from_anther_sample_file() throws IOException {
         ClassPathResource source = new ClassPathResource("another-sample.json");
 
-        MultipartFile multipartFile = new MockMultipartFile(Objects.requireNonNull(source.getFilename()), source.getInputStream());
+        MultipartFile multipartFile = new MockMultipartFile(Objects.requireNonNull(source.getFilename()),
+                source.getInputStream());
         List<Data> result = extractor.extract(multipartFile, options);
         assertEquals(1, result.size());
         //TODO better checks for values, etc

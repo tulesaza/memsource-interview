@@ -9,4 +9,9 @@
         <Bug code="HRS"/>
     </Match>
 
+    <Match>
+        <Class name="com.memsource.skeleton.infrastructure.TranslateEngineBeanPostProcessor"/>
+        <Bug code="DP"/>
+    </Match>
+
 </FindBugsFilter>

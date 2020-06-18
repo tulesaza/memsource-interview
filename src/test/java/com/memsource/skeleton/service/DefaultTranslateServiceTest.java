@@ -69,7 +69,8 @@ class DefaultTranslateServiceTest {
         Options options = new Options("en", "cs");
 
         ClassPathResource source = new ClassPathResource("another-sample.json");
-        MultipartFile multipartFile = new MockMultipartFile(Objects.requireNonNull(source.getFilename()), source.getInputStream());
+        MultipartFile multipartFile = new MockMultipartFile(Objects.requireNonNull(source.getFilename()),
+                source.getInputStream());
         String result = new String(translateService.translate(options, multipartFile));
         assertEquals("TEST", result);
 

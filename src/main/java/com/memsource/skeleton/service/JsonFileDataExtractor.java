@@ -31,7 +31,9 @@ public class JsonFileDataExtractor implements DataExtractor {
             List<String> sourceLangPaths = pathContext.read(getSourceLangExpression);
             List<String> targetLangPaths = pathContext.read(getTargetLangExpression);
             sourceLangPaths.forEach(path -> {
-                String possibleTargetPath = replaceLangInPath(path, options.getSourceLanguage(), options.getTargetLanguage());
+                String possibleTargetPath = replaceLangInPath(path,
+                        options.getSourceLanguage(),
+                        options.getTargetLanguage());
                 if (targetLangPaths.contains(possibleTargetPath)) {
                     Map<String, String> data = new HashMap<>(2);
                     data.put(options.getSourceLanguage(), valuesContext.read(path));

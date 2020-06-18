@@ -1,6 +1,5 @@
 package com.memsource.skeleton.controller;
 
-
 import com.memsource.skeleton.domain.dto.Options;
 import com.memsource.skeleton.service.TranslateService;
 import org.springframework.beans.factory.annotation.Autowired;

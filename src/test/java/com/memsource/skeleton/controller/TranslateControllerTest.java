@@ -37,7 +37,7 @@ class TranslateControllerTest {
     }
 
     @Test
-    void whenValid_expected_HTTP200() throws Exception {
+    void whenValid_expected_Http200() throws Exception {
 
 
         byte[] fileContent = "TEST".getBytes(StandardCharsets.UTF_8);

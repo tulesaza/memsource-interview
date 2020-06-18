@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 @Service
@@ -20,10 +21,11 @@ public class JsonFileBuilder implements FileBuilder {
             data.forEach(sentence -> {
                 valuesContext.set(sentence.getTargetPath(), sentence.getData().get(options.getTargetLanguage()));
             });
-            return valuesContext.jsonString().getBytes();
+            return valuesContext.jsonString().getBytes(StandardCharsets.UTF_8);
         } catch (IOException e) {
             e.printStackTrace();
+            throw new RuntimeException("Should be specific");
+
         }
-        return null;
     }
 }

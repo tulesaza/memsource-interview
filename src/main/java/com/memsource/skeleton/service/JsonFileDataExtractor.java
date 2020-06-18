@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class DefaultDataExtractor implements DataExtractor {
+public class JsonFileDataExtractor implements DataExtractor {
     @Override
     public List<Data> extract(MultipartFile file, Options options) {
         List<Data> result = new ArrayList<>();

@@ -9,6 +9,15 @@ public class Options {
     @JsonProperty("targetLanguage")
     private String targetLanguage;
 
+    public Options() {
+
+    }
+
+    public Options(String sourceLanguage, String targetLanguage) {
+        this.sourceLanguage = sourceLanguage;
+        this.targetLanguage = targetLanguage;
+    }
+
     public String getSourceLanguage() {
         return sourceLanguage;
     }

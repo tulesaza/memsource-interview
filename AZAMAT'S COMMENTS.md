@@ -15,7 +15,7 @@ do because it's just a test assignment.
 * Another: came up with some very universal structure and have 2 converters for each format
 At the moment I don't know what is the best.
 
-#Thanks for the assignment.
+# Thanks for the assignment.
 * I have never before worked with dynamic jsons.
 
 # Time spent:
